@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontapp
+    ports:
+      - 3000:80
+    environment:
+      - VITE_API_URI=http://43.205.199.129:8000/api/hello/
+    depends_on:
+      -  backend
+
+  backend:
+    build: ./backend
+    container_name: djangoapp
+    ports:
+      - 8000:8000
+    environment: 
+      - DEBUG=True
+    volumes:
+      - ./backend:/app
+
+    
+
